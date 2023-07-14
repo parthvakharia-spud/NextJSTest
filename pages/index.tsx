@@ -1,4 +1,4 @@
-import HomeContainer from '@/container/HomeContainer';
+import HomeContainer from '@/containers/HomeContainer';
 
 const Home = () => <HomeContainer/>
 
