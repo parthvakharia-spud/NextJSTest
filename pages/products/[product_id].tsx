@@ -1,4 +1,4 @@
-import ProductContainer from "@/container/ProductContainer";
+import ProductContainer from "@/containers/ProductContainer";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 interface ProductServerSideProps {

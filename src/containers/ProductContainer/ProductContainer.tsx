@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import ProductListContainer from "./ProductListContainer";
+import Box from '@mui/material/Box';
 
 interface ProductContainerProps {
   productDescription: string;
@@ -11,10 +12,10 @@ const ProductContainer = (props: ProductContainerProps) => {
   return (
     <div>
       <h2>This is Product Container</h2>
-      <div>
+      <Box>
         Product Description:
         {props.productDescription}
-      </div>
+      </Box>
       <ProductListContainer
         products={[
           {

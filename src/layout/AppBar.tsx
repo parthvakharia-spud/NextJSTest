@@ -13,12 +13,16 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useRouter } from "next/router";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useShoppingCartContext } from "@/providers/ShoppingCartProvider";
+import Badge from "@mui/material/Badge";
 
 const pages = ["Products", "User", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
   const router = useRouter();
+  const { products: shoppingCartProducts }: any = useShoppingCartContext();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -133,7 +137,19 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            mr={3}
+          >
+            <Badge
+              badgeContent={shoppingCartProducts?.length || 0}
+              color="secondary"
+            >
+              <ShoppingCartIcon sx={{ fontSize: "40px" }} />
+            </Badge>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

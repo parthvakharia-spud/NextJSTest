@@ -1,4 +1,4 @@
-import UserContainer from '@/container/UserContainer';
+import UserContainer from '@/containers/UserContainer';
 
 const User = () => <UserContainer/>
 

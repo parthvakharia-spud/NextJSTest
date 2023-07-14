@@ -3,11 +3,17 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box, CardActionArea } from "@mui/material";
+import { Box, Button, CardActionArea } from "@mui/material";
+import { useShoppingCartContext } from "@/providers/ShoppingCartProvider";
 
 const ProductListContainer = (props: any) => {
   const router = useRouter();
-  console.log("serverSideProps", props);
+  const { isNested } = props;
+  const {
+    products: shoppingCartProducts,
+    addToShoppingCart,
+    removeFromShoppingCart,
+  }: any = useShoppingCartContext();
 
   return (
     <Box p={2}>
@@ -34,9 +40,33 @@ const ProductListContainer = (props: any) => {
                 </Typography>
               </CardContent>
             </CardActionArea>
+            <Box
+              display="flex"
+              justifyContent="space-around"
+              alignItems="center"
+            >
+              <Button variant="contained" onClick={() => addToShoppingCart(x)}>
+                Add
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  removeFromShoppingCart(x.id);
+                }}
+              >
+                Remove
+              </Button>
+            </Box>
           </Card>
         ))}
       </Box>
+
+      {!isNested && shoppingCartProducts?.length > 0 && (
+        <Box>
+          <Typography variant="h1">Shopping Cart</Typography>
+          <ProductListContainer isNested products={shoppingCartProducts} />
+        </Box>
+      )}
     </Box>
   );
 };
